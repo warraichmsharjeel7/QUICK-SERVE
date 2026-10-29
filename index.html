@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickServe - Local Professional Services</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="top-banner">
+        <span>⚡ Special Offer: Get 20% OFF on your first booking with code: <strong>QUICK20</strong></span>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="navbar" id="mainHeader">
+        <div class="nav-container">
+            <a href="#home" class="logo" onclick="switchTab('home')">
+                <i class="fa-solid fa-wrench"></i> Quick<span>Serve</span>
+            </a>
+
+            <nav class="nav-links" id="navMenu">
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#services" class="nav-link" data-page="services">Services</a>
+                <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+                <a href="#about" class="nav-link" data-page="about">About</a>
+                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggleBtn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="profile-avatar" title="User Profile">A</div>
+                <button class="hamburger" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <main id="appMain">
+
+        <!-- ================= HOME PAGE ================= -->
+        <section id="page-home" class="page-section active">
+            <!-- HERO SECTION -->
+            <div class="hero-wrapper">
+                <div class="hero-content">
+                    <span class="badge-tag"><i class="fa-solid fa-shield-halved"></i> Verified Local Experts</span>
+                    <h1>Find top local <span>service specialists</span> near you</h1>
+                    <p>Connect with background-checked specialists for electric, plumbing, cleaning, AC repair, and maintenance services in seconds.</p>
+
+                    <!-- SEARCH BAR -->
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="homeSearchInput" placeholder="Search service (e.g. Electrician, Plumber)...">
+                        <button class="btn btn-primary" onclick="handleHomeSearch()">
+                            Search <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- HERO STATS -->
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <strong class="counter" data-target="500">500+</strong>
+                            <span>Professionals</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong class="counter" data-target="10000">10K+</strong>
+                            <span>Completed Jobs</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>4.9 ★</strong>
+                            <span>Avg Rating</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="img-frame">
+                        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Specialist at work">
+                        <div class="floating-badge">
+                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
+                            <div>
+                                <strong>100% Verified</strong>
+                                <small>Licensed & Insured</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POPULAR CATEGORIES SECTION -->
+            <div class="container section-padding">
+                <div class="section-header">
+                    <div>
+                        <span class="sub-title">EXPLORE SERVICES</span>
+                        <h2>Popular Categories</h2>
+                    </div>
+                    <button class="btn btn-outline" onclick="switchTab('services')">View All Catalog <i class="fa-solid fa-angle-right"></i></button>
+                </div>
+
+                <div class="categories-grid">
+                    <div class="category-card" onclick="filterServicesCategory('Plumbing')">
+                        <div class="cat-img"><img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=500&q=80" alt="Plumbing"></div>
+                        <div class="cat-info">
+                            <i class="fa-solid fa-faucet cat-icon"></i>
+                            <h3>Plumbing</h3>
+                            <p>120+ Specialists</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="filterServicesCategory('Electrical')">
+                        <div class="cat-img"><img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=500&q=80" alt="Electrical"></div>
+                        <div class="cat-info">
+                            <i class="fa-solid fa-bolt cat-icon"></i>
+                            <h3>Electrical</h3>
+                            <p>150+ Specialists</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="filterServicesCategory('Cleaning')">
+                        <div class="cat-img"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=500&q=80" alt="Cleaning"></div>
+                        <div class="cat-info">
+                            <i class="fa-solid fa-broom cat-icon"></i>
+                            <h3>Cleaning</h3>
+                            <p>180+ Specialists</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="filterServicesCategory('AC Repair')">
+                        <div class="cat-img"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=500&q=80" alt="AC Repair"></div>
+                        <div class="cat-info">
+                            <i class="fa-solid fa-snowflake cat-icon"></i>
+                            <h3>AC Repair</h3>
+                            <p>90+ Specialists</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="filterServicesCategory('Painting')">
+                        <div class="cat-img"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=500&q=80" alt="Painting"></div>
+                        <div class="cat-info">
+                            <i class="fa-solid fa-paint-roller cat-icon"></i>
+                            <h3>Painting</h3>
+                            <p>75+ Specialists</p>
+                        </div>
+                    </div>
+
+                    <div class="category-card more-card" onclick="switchTab('services')">
+                        <div class="more-content">
+                            <i class="fa-solid fa-grid-2-plus"></i>
+                            <h3>Explore All</h3>
+                            <p>View full catalog</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHY CHOOSE US SECTION -->
+            <div class="why-us-section">
+                <div class="container why-grid">
+                    <div class="why-text">
+                        <span class="sub-title">WHY CHOOSE US</span>
+                        <h2>Quality work, guaranteed satisfaction.</h2>
+                        <p>We connect you directly with evaluated professionals to ensure seamless booking and top-tier service quality.</p>
+                        
+                        <div class="feature-list">
+                            <div class="f-item">
+                                <div class="f-icon"><i class="fa-solid fa-user-check"></i></div>
+                                <div>
+                                    <h4>Background Checked</h4>
+                                    <p>Every specialist undergoes stringent identity and skill verification.</p>
+                                </div>
+                            </div>
+                            <div class="f-item">
+                                <div class="f-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                <div>
+                                    <h4>Transparent Upfront Pricing</h4>
+                                    <p>No hidden charges or unexpected surprise invoices after job completion.</p>
+                                </div>
+                            </div>
+                            <div class="f-item">
+                                <div class="f-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                                <div>
+                                    <h4>Instant Online Scheduling</h4>
+                                    <p>Pick your preferred date and time with direct confirmation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="why-banner">
+                        <div class="glow-card">
+                            <i class="fa-solid fa-award icon-large"></i>
+                            <h3>100% Satisfaction Guarantee</h3>
+                            <p>If you're not completely satisfied with the work, our support team resolves it instantly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES PAGE ================= -->
+        <section id="page-services" class="page-section">
+            <div class="container section-padding">
+                <div class="page-header text-center">
+                    <h1>Service Specialists Catalog</h1>
+                    <p>Select from top-rated professionals near you and place your booking request.</p>
+                </div>
+
+                <!-- FILTER BAR -->
+                <div class="filter-bar">
+                    <div class="filter-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="serviceSearchInput" placeholder="Search by specialist name or skill..." oninput="renderSpecialists()">
+                    </div>
+                    <div class="filter-select">
+                        <i class="fa-solid fa-filter"></i>
+                        <select id="categorySelectFilter" onchange="renderSpecialists()">
+                            <option value="All">All Categories</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="Cleaning">Cleaning</option>
+                            <option value="AC Repair">AC Repair</option>
+                            <option value="Painting">Painting</option>
+                            <option value="Carpentry">Carpentry</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SPECIALISTS GRID -->
+                <div class="specialists-grid" id="specialistsContainer">
+                    <!-- Dynamic Javascript Content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= DASHBOARD PAGE ================= -->
+        <section id="page-dashboard" class="page-section">
+            <div class="container section-padding">
+                <div class="dash-header">
+                    <div>
+                        <h1>Service Management Dashboard</h1>
+                        <p>Track booking workflows, transition order statuses, and leave feedback.</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="switchTab('services')">
+                        <i class="fa-solid fa-plus"></i> Book New Service
+                    </button>
+                </div>
+
+                <!-- STATS COUNTER GRID -->
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="sb-label">Total Requests</div>
+                        <div class="sb-val" id="statTotal">0</div>
+                        <i class="fa-solid fa-list-check sb-icon"></i>
+                    </div>
+                    <div class="stat-box warning">
+                        <div class="sb-label">Pending</div>
+                        <div class="sb-val" id="statPending">0</div>
+                        <i class="fa-solid fa-clock sb-icon"></i>
+                    </div>
+                    <div class="stat-box info">
+                        <div class="sb-label">In Progress</div>
+                        <div class="sb-val" id="statInProgress">0</div>
+                        <i class="fa-solid fa-spinner sb-icon"></i>
+                    </div>
+                    <div class="stat-box success">
+                        <div class="sb-label">Completed</div>
+                        <div class="sb-val" id="statCompleted">0</div>
+                        <i class="fa-solid fa-circle-check sb-icon"></i>
+                    </div>
+                </div>
+
+                <!-- BOOKING WORKFLOW TABLE -->
+                <div class="dashboard-card">
+                    <div class="dc-header">
+                        <h3><i class="fa-solid fa-list-ol"></i> Booking Orders Workflow</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="dash-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Service & Specialist</th>
+                                    <th>Schedule Date/Time</th>
+                                    <th>Status</th>
+                                    <th class="text-right">Actions / Transition</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashboardTableBody">
+                                <!-- Dynamic Rows From LocalStorage -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= BOOKING DETAIL / RECEIPT PAGE ================= -->
+        <section id="page-detail" class="page-section">
+            <div class="container section-padding">
+                <button class="back-link" onclick="switchTab('dashboard')">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+                </button>
+
+                <div id="bookingDetailContent">
+                    <!-- Populated via Script -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT PAGE ================= -->
+        <section id="page-about" class="page-section">
+            <div class="container section-padding">
+                <div class="about-grid">
+                    <div class="about-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Our Team">
+                        <div class="exp-badge">
+                            <strong>5+</strong>
+                            <span>Years of Excellence</span>
+                        </div>
+                    </div>
+                    <div class="about-content">
+                        <span class="sub-title">ABOUT US</span>
+                        <h2>We Create Ideas That Make a Difference</h2>
+                        <p>We are a passionate team dedicated to creating modern, creative, and high-quality digital service platforms. Our goal is to connect consumers with skilled professionals efficiently through smart tech solutions.</p>
+                        <p>With creativity, technology, and dedication, we transform simple service bookings into reliable, meaningful results.</p>
+                        
+                        <div class="about-stats-row">
+                            <div>
+                                <h3>5+</h3>
+                                <span>Years Experience</span>
+                            </div>
+                            <div>
+                                <h3>100+</h3>
+                                <span>Projects Done</span>
+                            </div>
+                            <div>
+                                <h3>50+</h3>
+                                <span>Happy Clients</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="switchTab('contact')">Get In Touch</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT PAGE ================= -->
+        <section id="page-contact" class="page-section">
+            <div class="container section-padding">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <span class="sub-title">CONTACT US</span>
+                        <h2>Let's Talk With Us</h2>
+                        <p>Have a question, custom requirement, or feedback? Reach out to our team anytime.</p>
+
+                        <div class="contact-card">
+                            <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h4>Address</h4>
+                                <p>Karachi, Pakistan</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>arishameraj2023@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>03194742525</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-card">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                            <div class="form-group">
+                                <label for="cName">Full Name</label>
+                                <input type="text" id="cName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cEmail">Email Address</label>
+                                <input type="email" id="cEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cSubject">Subject</label>
+                                <input type="text" id="cSubject" placeholder="Enter topic" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cMessage">Message</label>
+                                <textarea id="cMessage" rows="4" placeholder="Write your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fa-solid fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#home" class="logo" onclick="switchTab('home')">
+                    <i class="fa-solid fa-wrench"></i> Quick<span>Serve</span>
+                </a>
+                <p>Your ultimate platform for instant local professional services.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#home" onclick="switchTab('home')">Home</a>
+                <a href="#services" onclick="switchTab('services')">Services</a>
+                <a href="#dashboard" onclick="switchTab('dashboard')">Dashboard</a>
+                <a href="#about" onclick="switchTab('about')">About Us</a>
+            </div>
+            <div class="footer-socials">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 QuickServe / LocalServe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ================= BOOKING MODAL ================= -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Book Specialist Service</h2>
+                <p id="modalProviderSubtitle">Fill details to place instant request</p>
+            </div>
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+                <input type="hidden" id="modalProviderName">
+                <input type="hidden" id="modalServiceName">
+                <input type="hidden" id="modalRate">
+
+                <div class="form-group">
+                    <label>Selected Service</label>
+                    <input type="text" id="modalServiceDisplay" readonly class="input-readonly">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookDate">Date</label>
+                        <input type="date" id="bookDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookTime">Time</label>
+                        <input type="time" id="bookTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookAddress">Service Address</label>
+                    <input type="text" id="bookAddress" placeholder="Full home/office address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookNotes">Special Notes (Optional)</label>
+                    <textarea id="bookNotes" rows="2" placeholder="Any specific requirements..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeBookingModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm & Book</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= REVIEW MODAL ================= -->
+    <div id="reviewModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeReviewModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Leave Service Feedback</h2>
+                <p>Rate your experience with the specialist</p>
+            </div>
+            <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
+                <input type="hidden" id="reviewBookingId">
+
+                <div class="form-group">
+                    <label for="ratingScore">Rating Score</label>
+                    <select id="ratingScore">
+                        <option value="5">⭐⭐⭐⭐⭐ (5/5 Excellent)</option>
+                        <option value="4">⭐⭐⭐⭐ (4/5 Very Good)</option>
+                        <option value="3">⭐⭐⭐ (3/5 Good)</option>
+                        <option value="2">⭐⭐ (2/5 Average)</option>
+                        <option value="1">⭐ (1/5 Poor)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewComment">Review / Feedback</label>
+                    <textarea id="reviewComment" rows="3" placeholder="Describe the service quality..." required></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeReviewModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
